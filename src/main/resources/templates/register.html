@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <form method="post" action="/register" th:object="${userDTO}">
+       <div>
+           <h2 style="text-align: center">REGISTER</h2>
+       </div>
+        <table>
+            <tr>
+                <td>
+                    <label th:text="#{user.first_name}" name="first_name"></label>
+                    <input type="text">
+                </td>
+                <td>
+                    <input  th:text="#{user.last_name}" name="last_name" type="text" placeholder="Enter your last name">
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <input  th:text="#{user.email}" name="email"   type="text" placeholder="Enter your email" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input th:text="#{user.password}" name="password" type="text" placeholder="Enter your password">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input th:text="#{user.age}" name="age" type="number" placeholder="Enter your age ">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input th:text="#{user.gender}" name="sex" type="text" placeholder="Enter your gender">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Date Of Birth</label>
+                    <input type="text" name="DOB" placeholder="Enter your gender">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input th:text="#{user.address}" name="address" type="text" placeholder="Enter your address">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Department</label>
+                    <select name="department.id">
+                        <option th:each="department : ${departmentList}"
+                                th:text="${department.name}"
+                                th:value="${department.id}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button name="register" type="submit">Register</button>
+                </td>
+            </tr>
+       </table>
+    </form>
+</body>
+</html>

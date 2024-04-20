@@ -1,0 +1,49 @@
+<html layout:decorate="~{template.html}" lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+<body>
+<div layout:fragment="content">
+    <form action="/search" method="get" th:object="${searchDTO}">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="Search for ....">
+            <input type="text" name="currentPage" placeholder="Start from page ...">
+            <input type="number" name="size" placeholder="The length of page..." >
+        <button type="submit">Search</button>
+    </form>
+
+    <p th:text="'Total Page is: ' +${totalPage}"></p>
+    <p th:text="'Total Elements: ' +${totalElement}"> </p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Address</th>
+            <th>D.O.B</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.first_name}"></td>
+            <td th:text="${user.last_name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.sex}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.department?.name}"></td>
+            <td th:text="${user.address}"></td>
+            <td th:text="${#dates.format(user.DOB,'dd/MM/yyyy')}"></td>
+            <td>
+                <a th:href = "@{'/delete?id=' + ${user.id}}">Delete</a>
+                <a th:href = "@{'/update?id=' + ${user.id}}">Update</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

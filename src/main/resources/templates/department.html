@@ -1,0 +1,37 @@
+<html layout:decorate="~{/template.html}" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+
+<body>
+<div layout:fragment="content">
+
+    <form action="/department/search" method="get" th:object="${searchDTO}">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="Search for ....">
+        <input type="text" name="currentPage" placeholder="Start from page ...">
+        <input type="number" name="size" placeholder="The length of page..." >
+        <button type="submit">Search</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department : ${departmentList}">
+            <td th:text="${department.id}"></td>
+            <td th:text="${department.name}"></td>
+            <td th:text="${#dates.format(department.createdAt,'dd/MM/yyyy HH:mm')}"></td>
+            <td><a th:href="@{'department/delete?id=' + ${department.id}}">Delete</a></td>
+            <td><a th:href="@{'department/update?id=' + ${department.id}}">Update</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <p th:text="'Total Page is: ' + ${totalPage}"></p>
+    <p th:text="'Total Elements: ' + ${totalElement}"></p>
+
+</div>
+</body>
+</html>

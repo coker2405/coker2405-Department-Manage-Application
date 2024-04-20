@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <form METHOD="post" ACTION ="/department/create" th:object="${departmentDTO}">
+       <div>
+           <h2 style="text-align: center">REGISTER</h2>
+       </div>
+        <table>
+            <tr>
+                <td>
+                    <label th:text="#{department.name}"></label>
+                    <input type="text" id="name" name="name">
+                <td>
+                    <button name="Create" type="submit">Register</button>
+                </td>
+            </tr>
+       </table>
+    </form>
+</body>
+</html>
